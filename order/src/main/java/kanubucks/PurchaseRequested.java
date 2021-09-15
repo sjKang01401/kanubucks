@@ -1,5 +1,7 @@
 package kanubucks;
 
+import java.sql.Date;
+
 public class PurchaseRequested extends AbstractEvent {
 
     private Long id;
