@@ -3,32 +3,20 @@ package kanubucks;
 public class MenuCreated extends AbstractEvent {
 
     private Long id;
-    private Integer id;
     private String name;
     private String temp;
     private String option;
     private Integer price;
 
-    public MenuCreated(){
+    public MenuCreated() {
         super();
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-    public Integer getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
