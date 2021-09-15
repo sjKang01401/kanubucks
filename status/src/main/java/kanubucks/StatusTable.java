@@ -8,11 +8,11 @@ import java.util.List;
 @Table(name="StatusTable_table")
 public class StatusTable {
 
+        @Id
+        @GeneratedValue(strategy=GenerationType.AUTO)
         private Long id;
         private Long orderId;
         private Long userId;
-        @Id
-        @GeneratedValue(strategy=GenerationType.AUTO)
         private Integer amount;
         private String status;
         private Date time;
