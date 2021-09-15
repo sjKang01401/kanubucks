@@ -5,7 +5,8 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface Repository extends CrudRepository<, Long> {
+public interface StatusTableRepository extends CrudRepository<StatusTable, Long> {
 
+    List<StatusTable> findByOrderId(Long orderId);
 
 }
