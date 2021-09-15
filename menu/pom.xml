@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>kanubucks</groupId>
-	<artifactId>Menu</artifactId>
+	<artifactId>menu</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Menu</name>
+	<name>menu</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
