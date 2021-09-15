@@ -11,7 +11,7 @@
 	<groupId>kanubucks</groupId>
 	<artifactId>User</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>User</name>
+	<name>user</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
