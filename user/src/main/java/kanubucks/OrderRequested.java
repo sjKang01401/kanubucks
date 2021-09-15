@@ -1,5 +1,7 @@
 package kanubucks;
 
+import java.util.Date;
+
 public class OrderRequested extends AbstractEvent {
 
     private Long id;
