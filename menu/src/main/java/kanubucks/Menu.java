@@ -9,7 +9,7 @@ import java.util.Date;
 @Table(name="Menu_table")
 public class Menu {
 
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String temp;
