@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Menu
+  name: menu
   labels:
-    app: Menu
+    app: menu
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: Menu
+      app: menu
   template:
     metadata:
       labels:
-        app: Menu
+        app: menu
     spec:
       containers:
-        - name: Menu
-          image: username/Menu:latest
+        - name: menu
+          image: kanubucks.azurecr.io/menu:latest
           ports:
             - containerPort: 8080
           readinessProbe:

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: status
-          image: username/status:latest
+          image: kanubucks.azurecr.io/status:latest
           ports:
             - containerPort: 8080
           readinessProbe:
