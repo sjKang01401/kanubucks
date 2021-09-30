@@ -22,24 +22,27 @@ public class MenuCreated extends AbstractEvent {
     public void setName(String name) {
         this.name = name;
     }
-    public String getTemp() {
-        return temp;
+    public String getName() {
+        return name;
     }
 
     public void setTemp(String temp) {
         this.temp = temp;
     }
+    public String getTemp() {
+        return temp;
+    }
+
     public String getOption() {
         return option;
     }
-
     public void setOption(String option) {
         this.option = option;
     }
+
     public Integer getPrice() {
         return price;
     }
-
     public void setPrice(Integer price) {
         this.price = price;
     }
