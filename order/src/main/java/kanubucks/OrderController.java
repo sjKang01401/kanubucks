@@ -8,10 +8,34 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 
- @RestController
+@RestController
+ @RequestMapping("/orders")
  public class OrderController {
 
+  @Autowired
+  OrderRepository orderRepository;
+
+  @RequestMapping(method = RequestMethod.GET, path = "/confirm/{id}")
+  public String confirm(@PathVariable("id") long orderId){
+   Optional<Order> orderOptional = orderRepository.findById(orderId);
+
+   if (!orderOptional.isPresent()) {
+    return "헤딩 ID에 해당하는 주문 없음";
+   }
+
+   Order order = orderOptional.get();
+
+   if (!order.getStatus().equals(Order.REQUESTED)) {
+    return "주문 확정이 불가능한 상태";
+   }
+
+   order.setStatus(Order.CONFIRMED);
+   orderRepository.save(order);
+
+   return "성공";
+  }
 
 
 

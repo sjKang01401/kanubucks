@@ -16,6 +16,14 @@ public class Order {
     private Date time;
     private Integer amount;
     private String status;
+    private Integer couponNum;
+
+    public final static String REQUESTED = "requested";
+    public final static String FAILED = "failed";
+    public final static String CONFIRMED = "confirmed";
+    public final static String DENIED = "denied";
+    public final static String COMPLETED = "completed";
+    public final static String TOOKOUT = "tookOut";
 
     @PostPersist
     public void onPostPersist(){
@@ -51,40 +59,43 @@ public class Order {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getUserId() {
         return userId;
     }
-
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
     public Date getTime() {
         return time;
     }
-
     public void setTime(Date time) {
         this.time = time;
     }
+
     public Integer getAmount() {
         return amount;
     }
-
     public void setAmount(Integer amount) {
         this.amount = amount;
     }
+
     public String getStatus() {
         return status;
     }
-
     public void setStatus(String status) {
         this.status = status;
     }
 
-
-
+    public Integer getCouponNum() {
+        return couponNum;
+    }
+    public void setCouponNum(Integer couponNum){
+        this.couponNum = couponNum;
+    }
 
 }
