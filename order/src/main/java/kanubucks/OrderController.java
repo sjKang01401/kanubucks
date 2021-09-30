@@ -37,8 +37,44 @@ import java.util.Optional;
    return "성공";
   }
 
+ @RequestMapping(method = RequestMethod.GET, path = "/complete/{id}")
+ public String complete(@PathVariable("id") long orderId){
+  Optional<Order> orderOptional = orderRepository.findById(orderId);
 
+  if (!orderOptional.isPresent()) {
+   return "헤딩 ID에 해당하는 주문 없음";
+  }
 
+  Order order = orderOptional.get();
 
+  if (!order.getStatus().equals(Order.CONFIRMED)) {
+   return "주문 완료가 불가능한 상태";
+  }
+
+  order.setStatus(Order.COMPLETED);
+  orderRepository.save(order);
+
+  return "성공";
+ }
+
+ @RequestMapping(method = RequestMethod.GET, path = "/tookout/{id}")
+ public String tookOut(@PathVariable("id") long orderId){
+  Optional<Order> orderOptional = orderRepository.findById(orderId);
+
+  if (!orderOptional.isPresent()) {
+   return "헤딩 ID에 해당하는 주문 없음";
+  }
+
+  Order order = orderOptional.get();
+
+  if (!order.getStatus().equals(Order.COMPLETED)) {
+   return "수취가 불가능한 상태";
+  }
+
+  order.setStatus(Order.TOOKOUT);
+  orderRepository.save(order);
+
+  return "성공";
+ }
 
  }
