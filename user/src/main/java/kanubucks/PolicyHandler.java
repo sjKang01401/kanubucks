@@ -12,7 +12,7 @@ import java.util.Optional;
 public class PolicyHandler{
     @Autowired UserRepository userRepository;
 
-    @StreamListener(KafkaProcessor.INPUT)
+   /* @StreamListener(KafkaProcessor.INPUT)
     public void wheneverTakeOutCompleted_StampSaved(@Payload OrderRequested orderRequested) {
 
         if (!takeOutCompleted.validate()) return;
@@ -66,7 +66,7 @@ public class PolicyHandler{
         user.setStamp(stampCnt);
         userRepository.save(user);
 
-    }
+    }*/
 
 
     @StreamListener(KafkaProcessor.INPUT)
