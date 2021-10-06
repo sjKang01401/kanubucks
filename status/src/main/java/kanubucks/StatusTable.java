@@ -1,6 +1,5 @@
 package kanubucks;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,4 +30,11 @@ public class StatusTable {
         private Integer amount;
         private Integer couponNum;
         private String status;
+
+        public final static String PURCHASE_SUCCESS = "Purchase Success";
+        public final static String PURCHASE_FAIL = "Purchase Fail";
+        public final static String ORDER_APPROVED = "Order Approved";
+        public final static String ORDER_DENIED = "Order Denied";
+        public final static String ORDER_COMPLETED = "Order Completed";
+        public final static String TAKEOUT_COMPLETED = "TakeOut Completed";
 }
