@@ -1,64 +1,34 @@
 package kanubucks;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="StatusTable_table")
+@Table(name="Status_table")
+@Getter @Setter
 public class StatusTable {
 
-        @Id
-        @GeneratedValue(strategy=GenerationType.AUTO)
+        @Id @GeneratedValue(strategy=GenerationType.AUTO)
         private Long id;
+
+        @Column(name = "order_id")
         private Long orderId;
+
+        @ElementCollection
+        @CollectionTable(name = "OrderItem_table", joinColumns = @JoinColumn(name = "order_id"))
+        private List<OrderItem> orderItems;
+
         private Long userId;
-        private Integer amount;
-        private String status;
+        private String userName;
+        private String userPhone;
+
         private Date time;
-
-
-        public Long getId() {
-                return id;
-        }
-
-        public void setId(Long id) {
-                this.id = id;
-        }
-        public Long getOrderId() {
-                return orderId;
-        }
-
-        public void setOrderId(Long orderId) {
-                this.orderId = orderId;
-        }
-        public Long getUserId() {
-                return userId;
-        }
-
-        public void setUserId(Long userId) {
-                this.userId = userId;
-        }
-        public Integer getAmount() {
-                return amount;
-        }
-
-        public void setAmount(Integer amount) {
-                this.amount = amount;
-        }
-        public String getStatus() {
-                return status;
-        }
-
-        public void setStatus(String status) {
-                this.status = status;
-        }
-        public Date getTime() {
-                return time;
-        }
-
-        public void setTime(Date time) {
-                this.time = time;
-        }
-
+        private Integer amount;
+        private Integer couponNum;
+        private String status;
 }
