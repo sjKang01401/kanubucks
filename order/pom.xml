@@ -57,6 +57,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>5.1.10.RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -75,6 +81,15 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			<!-- lombok -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>1.18.16</version>
+				<scope>provided</scope>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
