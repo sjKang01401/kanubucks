@@ -1,5 +1,6 @@
 package kanubucks;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ public class StatusController {
 	@Autowired
 	StatusTableRepository statusTableRepository;
 
-	@RequestMapping(method=RequestMethod.GET, path="/status/employee/")
+	@RequestMapping(method=RequestMethod.GET, path="/status/employee/", produces="application/json; charset=UTF8")
 	public String getViewForEmployee() {
 
 		List<String> employeeStatus = new ArrayList<>();
@@ -22,14 +23,20 @@ public class StatusController {
 
 		List<StatusTable> viewEmployee = statusTableRepository.findByStatusOrderByTimeDesc(employeeStatus);
 
-		return viewEmployee.toString();
+		Gson gson = new Gson();
+		String rtnString = gson.toJson(viewEmployee);
+
+		return rtnString;
 	}
 
-	@RequestMapping(method=RequestMethod.GET, path="/status/user/")
+	@RequestMapping(method=RequestMethod.GET, path="/status/user/", produces="application/json; charset=UTF8")
 	public String getViewForUser() {
 
 		List<StatusTable> viewUser = statusTableRepository.findAll();
 
-		return viewUser.toString();
+		Gson gson = new Gson();
+		String rtnString = gson.toJson(viewUser);
+
+		return rtnString;
 	}
 }
