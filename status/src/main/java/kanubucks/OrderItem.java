@@ -11,7 +11,7 @@ public class OrderItem {
 
         private Long menuId;
         private String menuName;
-        private String menuPrice;
+        private Integer menuPrice;
 
         private Integer qty;
         private String temp;

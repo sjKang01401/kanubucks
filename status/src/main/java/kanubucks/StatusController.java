@@ -17,9 +17,9 @@ public class StatusController {
 	public String getViewForEmployee() {
 
 		List<String> employeeStatus = new ArrayList<>();
-		employeeStatus.add(StatusTable.PURCHASE_SUCCESS);
-		employeeStatus.add(StatusTable.ORDER_APPROVED);
-		employeeStatus.add(StatusTable.ORDER_COMPLETED);
+		employeeStatus.add(StatusTable.REQUESTED);
+		employeeStatus.add(StatusTable.CONFIRMED);
+		employeeStatus.add(StatusTable.COMPLETED);
 
 		List<StatusTable> viewEmployee = statusTableRepository.findByStatusOrderByTimeDesc(employeeStatus);
 

@@ -31,10 +31,10 @@ public class StatusTable {
         private Integer couponNum;
         private String status;
 
-        public final static String PURCHASE_SUCCESS = "Purchase Success";
-        public final static String PURCHASE_FAIL = "Purchase Fail";
-        public final static String ORDER_APPROVED = "Order Approved";
-        public final static String ORDER_DENIED = "Order Denied";
-        public final static String ORDER_COMPLETED = "Order Completed";
-        public final static String TAKEOUT_COMPLETED = "TakeOut Completed";
+        public final static String REQUESTED = "requested";
+        public final static String FAILED = "failed";
+        public final static String CONFIRMED = "confirmed";
+        public final static String DENIED = "denied";
+        public final static String COMPLETED = "completed";
+        public final static String TOOKOUT = "tookOut";
 }
