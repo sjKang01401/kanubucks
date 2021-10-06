@@ -12,16 +12,17 @@ import java.util.Optional;
 public class PolicyHandler{
     @Autowired UserRepository userRepository;
 
-   /* @StreamListener(KafkaProcessor.INPUT)
+    @StreamListener(KafkaProcessor.INPUT)
     public void wheneverTakeOutCompleted_StampSaved(@Payload OrderRequested orderRequested) {
 
-        if (!takeOutCompleted.validate()) return;
+        if (!orderRequested.validate()) return;
 
-        System.out.println("\n\n##### listener StampSaved : " + takeOutCompleted.toJson() + "\n\n");
-        Long userId = takeOutCompleted.getId();
+        System.out.println("\n\n##### listener StampSaved : " + orderRequested.toJson() + "\n\n");
+        //Long userId = takeOutCompleted.getId();
 
-        String userId = orderRequested.getCustomer();
+        Long userId = orderRequested.getId();
         Optional<User> userOptional = userRepository.findById(userId);
+        User user = userOptional.get();
         Integer stampCnt = user.getStamp();
         Integer orderQty = 5;// 주문된 음료 수량 orderRequested.getOrderQty();
         stampCnt = stampCnt + orderQty;
@@ -36,15 +37,15 @@ public class PolicyHandler{
     }
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverOrderRequested_CouponUsed(@Payload OrderRequested orderRequested){
+    public String wheneverOrderRequested_CouponUsed(@Payload OrderRequested orderRequested){
 
-        if(!orderRequested.validate()) return;
+        if(!orderRequested.validate()) return "";
 
         System.out.println("\n\n##### listener CouponUsed : " + orderRequested.toJson() + "\n\n");
 
         String userId = orderRequested.getCustomer();
 
-        Optional<User> userOptional = userRepository.findById(userId);
+        Optional<User> userOptional = userRepository.findById(orderRequested.getId());
         User user= userOptional.get();
         Integer stampCnt = user.getStamp();
         Integer orderQty = orderRequested.getAmount();
@@ -66,7 +67,8 @@ public class PolicyHandler{
         user.setStamp(stampCnt);
         userRepository.save(user);
 
-    }*/
+        return "";
+    }
 
 
     @StreamListener(KafkaProcessor.INPUT)
