@@ -9,6 +9,8 @@ public class OrderRequested extends AbstractEvent {
     private Date time;
     private Integer amount;
     private String status;
+    private Integer qty;
+    private Integer couponNum;
 
     public OrderRequested(){
         super();
@@ -48,5 +50,19 @@ public class OrderRequested extends AbstractEvent {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Integer getQty() {
+        return qty;
+    }
+    public void setQty(Integer qty) {
+        this.qty = qty;
+    }
+
+    public Integer getCouponNum() {
+        return couponNum;
+    }
+    public void setCouponNum(Integer couponNum) {
+        this.couponNum = couponNum;
     }
 }
