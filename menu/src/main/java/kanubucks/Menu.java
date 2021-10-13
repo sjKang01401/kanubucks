@@ -10,10 +10,19 @@ import java.util.Date;
 public class Menu {
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "menu_id")
     private Long id;
+
+    @Column(name = "menu_name")
     private String name;
+
+    @Column(name = "menu_temp")
     private String temp;
+
+    @Column(name = "menu_option")
     private String option;
+
+    @Column(name = "menu_price")
     private Integer price;
 
     public Long getId() {
