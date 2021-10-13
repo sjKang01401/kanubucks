@@ -23,8 +23,10 @@ public class PolicyHandler{
         Long userId = takeOutCompleted.getId();
         Optional<User> userOptional = userRepository.findById(userId);
         User user = userOptional.get();
+        //현재 사용자 쿠폰수
         Integer stampCnt = user.getStamp();
-        Integer orderQty = takeOutCompleted.getAmount();// 주문된 음료 수량 orderRequested.getOrderQty();
+        // 주문된 음료 수량
+        Integer orderQty = takeOutCompleted.getQty();
         stampCnt = stampCnt + orderQty;
 
         user.setStamp(stampCnt);
@@ -41,12 +43,12 @@ public class PolicyHandler{
 
         System.out.println("\n\n##### listener CouponUsed : " + orderRequested.toJson() + "\n\n");
 
-        String userId = orderRequested.getCustomer();
+        Long userId = orderRequested.getUserId();
 
         Optional<User> userOptional = userRepository.findById(orderRequested.getId());
         User user= userOptional.get();
         Integer stampCnt = user.getStamp();
-        Integer  couponQty = orderRequested.getCouponQty();
+        Integer  couponQty = orderRequested.getCouponNum();
 
         //사용자 Stamp수량 차감을 위해 쿠폰수량 * 10;
         Integer  useStampQty = couponQty * 10;

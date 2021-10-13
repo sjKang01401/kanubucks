@@ -3,7 +3,8 @@ package kanubucks;
 public class TakeOutCompleted extends AbstractEvent {
 
     private Long id;
-    private Integer amount;
+    private Long userId;
+    private Integer qty;
 
     public Long getId() {
         return id;
@@ -13,11 +14,15 @@ public class TakeOutCompleted extends AbstractEvent {
         this.id = id;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
+
+    public Integer getQty() { return qty; }
+
+    public void setQty(Integer qty) { this.qty = qty; }
 }
