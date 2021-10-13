@@ -20,7 +20,7 @@ public class PolicyHandler{
         System.out.println("\n\n##### listener StampSaved : " + takeOutCompleted.toJson() + "\n\n");
         //Long userId = takeOutCompleted.getId();
 
-        Long userId = takeOutCompleted.getId();
+        Long userId = takeOutCompleted.getUserId();
         Optional<User> userOptional = userRepository.findById(userId);
         User user = userOptional.get();
         //현재 사용자 쿠폰수
