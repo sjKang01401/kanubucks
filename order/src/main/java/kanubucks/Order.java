@@ -91,6 +91,15 @@ public class Order {
             case TOOKOUT:
                 TakeOutCompleted takeOutCompleted = new TakeOutCompleted();
                 BeanUtils.copyProperties(this, takeOutCompleted);
+
+                int qty = 0;
+                if(orderItems!=null){
+                    for(OrderItem item: orderItems){
+                        qty+=item.getQty();
+                    }
+                }
+                takeOutCompleted.setQty(qty);
+
                 takeOutCompleted.publishAfterCommit();
                 break;
             default:

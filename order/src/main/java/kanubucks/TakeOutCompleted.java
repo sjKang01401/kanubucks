@@ -1,18 +1,15 @@
 package kanubucks;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class TakeOutCompleted extends AbstractEvent {
 
     private Long id;
+    private Integer qty;
 
     public TakeOutCompleted(){
         super();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
