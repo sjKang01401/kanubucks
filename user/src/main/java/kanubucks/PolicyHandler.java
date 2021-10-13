@@ -13,26 +13,22 @@ public class PolicyHandler{
     @Autowired UserRepository userRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverTakeOutCompleted_StampSaved(@Payload OrderRequested orderRequested) {
+    public void wheneverTakeOutCompleted_StampSaved(@Payload TakeOutCompleted takeOutCompleted) {
 
-        if (!orderRequested.validate()) return;
+        if (!takeOutCompleted.validate()) return;
 
-        System.out.println("\n\n##### listener StampSaved : " + orderRequested.toJson() + "\n\n");
+        System.out.println("\n\n##### listener StampSaved : " + takeOutCompleted.toJson() + "\n\n");
         //Long userId = takeOutCompleted.getId();
 
-        Long userId = orderRequested.getId();
+        Long userId = takeOutCompleted.getId();
         Optional<User> userOptional = userRepository.findById(userId);
         User user = userOptional.get();
         Integer stampCnt = user.getStamp();
-        Integer orderQty = 5;// 주문된 음료 수량 orderRequested.getOrderQty();
+        Integer orderQty = takeOutCompleted.getAmount();// 주문된 음료 수량 orderRequested.getOrderQty();
         stampCnt = stampCnt + orderQty;
 
         user.setStamp(stampCnt);
         userRepository.save(user);
-
-        // Sample Logic //
-        // User user = new User();
-        // userRepository.save(user);
 
     }
 
@@ -48,8 +44,7 @@ public class PolicyHandler{
         Optional<User> userOptional = userRepository.findById(orderRequested.getId());
         User user= userOptional.get();
         Integer stampCnt = user.getStamp();
-        Integer orderQty = orderRequested.getAmount();
-        Integer  couponQty = 3;
+        Integer  couponQty = orderRequested.getCouponQty();
 
         //사용자 Stamp수량 차감을 위해 쿠폰수량 * 10;
         Integer  useStampQty = couponQty * 10;
