@@ -33,9 +33,11 @@ public class PolicyHandler{
     }
 
     @StreamListener(KafkaProcessor.INPUT)
-    public String wheneverOrderRequested_CouponUsed(@Payload OrderRequested orderRequested){
+    public void wheneverOrderRequested_CouponUsed(@Payload OrderRequested orderRequested){
 
-        if(!orderRequested.validate()) return "";
+        if(!orderRequested.validate()){
+            System.out.println("Basic Validation Error");
+        }
 
         System.out.println("\n\n##### listener CouponUsed : " + orderRequested.toJson() + "\n\n");
 
@@ -51,18 +53,16 @@ public class PolicyHandler{
 
         //사용자 스탬프 수가 10장이 안될 경우
         if(stampCnt < 10) {
-            return "사용 가능한 쿠폰이 없습니다.";
+            System.out.println("사용 가능한 쿠폰이 없습니다.");
         //보유한 스탬프 수량보다 사용하려는 쿠폰 장수가 더 많을 경우
         } else if(stampCnt < 0) {
-            return "잘못된 쿠폰 수량이 입력 되었습니다";
+            System.out.println("잘못된 쿠폰 수량이 입력 되었습니다");
         }
         //Stamp 수량 차감
         stampCnt = stampCnt - useStampQty;
 
         user.setStamp(stampCnt);
         userRepository.save(user);
-
-        return "";
     }
 
 
