@@ -52,7 +52,7 @@ public class Order {
     @PostPersist
     public void onPostPersist(){
         if(this.status.equals(FAILED)) return;
-        
+
         OrderRequested orderRequested = new OrderRequested();
         orderRequested.setQty(orderItems.size());
         BeanUtils.copyProperties(this, orderRequested);
@@ -108,14 +108,13 @@ public class Order {
                     entity, // {요청할 때 보낼 데이터}
                     String.class
             );
-            if(response.getStatusCode().value() != 200){
+            if(response.getStatusCode().value() == 200){
                 System.out.println("카드 인증 오류!!!");
                 this.status = FAILED;
                 return;
             }
         } catch(Exception e) {
             System.out.println("카드 인증 오류!!!");
-            this.status = FAILED;
             return;
         }
         System.out.println("카드 정보 인증 완료");
