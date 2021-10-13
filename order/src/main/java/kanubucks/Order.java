@@ -54,7 +54,15 @@ public class Order {
         if(this.status.equals(FAILED)) return;
 
         OrderRequested orderRequested = new OrderRequested();
-        orderRequested.setQty(orderItems.size());
+
+        int qty = 0;
+        if(orderItems!=null){
+            for(OrderItem item: orderItems){
+                qty+=item.getQty();
+            }
+        }
+
+        orderRequested.setQty(qty);
         BeanUtils.copyProperties(this, orderRequested);
         orderRequested.publishAfterCommit();
     }
