@@ -7,6 +7,7 @@ import lombok.Setter;
 public class TakeOutCompleted extends AbstractEvent {
 
     private Long id;
+    private Long userId;
     private Integer qty;
 
     public TakeOutCompleted(){
