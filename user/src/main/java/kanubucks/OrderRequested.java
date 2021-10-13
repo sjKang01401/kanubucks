@@ -9,6 +9,7 @@ public class OrderRequested extends AbstractEvent {
     private Date time;
     private Integer amount;
     private String status;
+    private Integer couponQty;
 
     public Long getId() {
         return id;
@@ -45,4 +46,12 @@ public class OrderRequested extends AbstractEvent {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
+    public Integer getCouponQty() { return couponQty ; }
+
+    public void setCouponQty(Integer couponQty) {
+        this.couponQty = couponQty;
+    }
+
 }

@@ -13,33 +13,31 @@ public class PolicyHandler{
     @Autowired UserRepository userRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverTakeOutCompleted_StampSaved(@Payload OrderRequested orderRequested) {
+    public void wheneverTakeOutCompleted_StampSaved(@Payload TakeOutCompleted takeOutCompleted) {
 
-        if (!orderRequested.validate()) return;
+        if (!takeOutCompleted.validate()) return;
 
-        System.out.println("\n\n##### listener StampSaved : " + orderRequested.toJson() + "\n\n");
+        System.out.println("\n\n##### listener StampSaved : " + takeOutCompleted.toJson() + "\n\n");
         //Long userId = takeOutCompleted.getId();
 
-        Long userId = orderRequested.getId();
+        Long userId = takeOutCompleted.getId();
         Optional<User> userOptional = userRepository.findById(userId);
         User user = userOptional.get();
         Integer stampCnt = user.getStamp();
-        Integer orderQty = 5;// 주문된 음료 수량 orderRequested.getOrderQty();
+        Integer orderQty = takeOutCompleted.getAmount();// 주문된 음료 수량 orderRequested.getOrderQty();
         stampCnt = stampCnt + orderQty;
 
         user.setStamp(stampCnt);
         userRepository.save(user);
 
-        // Sample Logic //
-        // User user = new User();
-        // userRepository.save(user);
-
     }
 
     @StreamListener(KafkaProcessor.INPUT)
-    public String wheneverOrderRequested_CouponUsed(@Payload OrderRequested orderRequested){
+    public void wheneverOrderRequested_CouponUsed(@Payload OrderRequested orderRequested){
 
-        if(!orderRequested.validate()) return "";
+        if(!orderRequested.validate()){
+            System.out.println("Basic Validation Error");
+        }
 
         System.out.println("\n\n##### listener CouponUsed : " + orderRequested.toJson() + "\n\n");
 
@@ -48,26 +46,23 @@ public class PolicyHandler{
         Optional<User> userOptional = userRepository.findById(orderRequested.getId());
         User user= userOptional.get();
         Integer stampCnt = user.getStamp();
-        Integer orderQty = orderRequested.getAmount();
-        Integer  couponQty = 3;
+        Integer  couponQty = orderRequested.getCouponQty();
 
         //사용자 Stamp수량 차감을 위해 쿠폰수량 * 10;
         Integer  useStampQty = couponQty * 10;
 
         //사용자 스탬프 수가 10장이 안될 경우
         if(stampCnt < 10) {
-            return "사용 가능한 쿠폰이 없습니다.";
+            System.out.println("사용 가능한 쿠폰이 없습니다.");
         //보유한 스탬프 수량보다 사용하려는 쿠폰 장수가 더 많을 경우
         } else if(stampCnt < 0) {
-            return "잘못된 쿠폰 수량이 입력 되었습니다";
+            System.out.println("잘못된 쿠폰 수량이 입력 되었습니다");
         }
         //Stamp 수량 차감
         stampCnt = stampCnt - useStampQty;
 
         user.setStamp(stampCnt);
         userRepository.save(user);
-
-        return "";
     }
 
 

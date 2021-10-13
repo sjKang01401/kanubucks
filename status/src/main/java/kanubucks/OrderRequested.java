@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Getter @Setter
-public class PurchaseRequested extends AbstractEvent {
+public class OrderRequested extends AbstractEvent {
 
     private Long id;
     private List<OrderItem> orderItems;

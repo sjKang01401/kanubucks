@@ -20,14 +20,14 @@ public class StatusTableViewHandler {
     private StatusTableRepository statusTableRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void whenPurchaseRequested (@Payload PurchaseRequested purchaseRequested) {
+    public void whenPurchaseRequested (@Payload OrderRequested orderRequested) {
 
         try {
 
-            if (!purchaseRequested.validate()) return;
+            if (!orderRequested.validate()) return;
 
             // Order Unique 확인
-            List<StatusTable> statusTableList = statusTableRepository.findByOrderId(purchaseRequested.getId());
+            List<StatusTable> statusTableList = statusTableRepository.findByOrderId(orderRequested.getId());
             if (statusTableList != null && statusTableList.size() != 0) {
                 return;
             }
@@ -35,10 +35,10 @@ public class StatusTableViewHandler {
             StatusTable statusTable = new StatusTable();
 
             // Order 정보
-            statusTable.setOrderId(purchaseRequested.getId());
+            statusTable.setOrderId(orderRequested.getId());
 
             List<OrderItem> orderItems = new ArrayList<>();
-            for(OrderItem purchaseOrderItem : purchaseRequested.getOrderItems()) {
+            for(OrderItem purchaseOrderItem : orderRequested.getOrderItems()) {
 
                 OrderItem orderItem = new OrderItem();
 
@@ -57,7 +57,7 @@ public class StatusTableViewHandler {
             }
 
             // User 정보
-            statusTable.setUserId(purchaseRequested.getUserId());
+            statusTable.setUserId(orderRequested.getUserId());
 
             User user = StatusApplication.applicationContext.getBean(UserService.class)
                             .getUser(statusTable.getUserId());
@@ -65,10 +65,10 @@ public class StatusTableViewHandler {
             statusTable.setUserPhone(user.getPhone());
 
             // 그밖의 정보
-            statusTable.setTime(purchaseRequested.getTime());
-            statusTable.setAmount(purchaseRequested.getAmount());
-            statusTable.setCouponNum(purchaseRequested.getCouponNum());
-            statusTable.setStatus(purchaseRequested.getStatus());
+            statusTable.setTime(orderRequested.getTime());
+            statusTable.setAmount(orderRequested.getAmount());
+            statusTable.setCouponNum(orderRequested.getCouponNum());
+            statusTable.setStatus(orderRequested.getStatus());
 
             // view 레파지 토리에 save
             statusTableRepository.save(statusTable);
