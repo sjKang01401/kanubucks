@@ -4,15 +4,11 @@ import Router from 'vue-router'
 
 Vue.use(Router);
 
-
 import OrderManager from "./components/OrderManager"
-
 import UserManager from "./components/UserManager"
-
 import MenuManager from "./components/MenuManager"
+import StatusManager from "./components/StatusManager"
 
-
-import  from "./components/"
 export default new Router({
     // mode: 'history',
     base: process.env.BASE_URL,
@@ -22,26 +18,20 @@ export default new Router({
                 name: 'OrderManager',
                 component: OrderManager
             },
-
             {
                 path: '/users',
                 name: 'UserManager',
                 component: UserManager
             },
-
             {
                 path: '/menus',
                 name: 'MenuManager',
                 component: MenuManager
             },
-
-
             {
-                path: '/',
-                name: '',
-                component: 
+                path: '/status',
+                name: 'StatusManager',
+                component: StatusManager
             },
-
-
     ]
 })

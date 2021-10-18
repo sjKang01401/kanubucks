@@ -109,6 +109,9 @@ public class Order {
 
     @PrePersist
     public void onPrePersist(){
+
+        this.setTime(new Date());
+
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("cardNum", "1234-5678-9012-3456");
         params.add("amount", Integer.toString(amount));

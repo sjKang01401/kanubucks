@@ -47,7 +47,7 @@ pluralCaseList.push( {plural: "users", pascal: "User"} )
 pluralCaseList.push( {plural: "menus", pascal: "Menu"} )
 
 
-pluralCaseList.push( {plural: "", pascal: ""} )
+pluralCaseList.push( {plural: "status", pascal: "Status"} )
 
 Vue.prototype.$ManagerLists.forEach(function(item, idx) {
   pluralCaseList.forEach(function(tmp) {
@@ -60,6 +60,12 @@ Vue.prototype.$ManagerLists.forEach(function(item, idx) {
     }
   })
 })
+
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
 
 new Vue({
   vuetify,

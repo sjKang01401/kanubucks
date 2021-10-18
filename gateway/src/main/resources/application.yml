@@ -23,7 +23,7 @@ spring:
         - id: status
           uri: http://localhost:8084
           predicates:
-            - Path= //**
+            - Path= /statusTables/**
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -58,7 +58,7 @@ spring:
         - id: status
           uri: http://status:8080
           predicates:
-            - Path= //**
+            - Path= /statusTables/**
       globalcors:
         corsConfigurations:
           '[/**]':

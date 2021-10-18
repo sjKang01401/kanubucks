@@ -1,12 +1,10 @@
 package kanubucks;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.JoinColumn;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Getter

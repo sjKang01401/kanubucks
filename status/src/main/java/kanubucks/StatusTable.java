@@ -1,5 +1,6 @@
 package kanubucks;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +27,7 @@ public class StatusTable {
         private String userName;
         private String userPhone;
 
+        @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
         private Date time;
         private Integer amount;
         private Integer couponNum;

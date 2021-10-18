@@ -9,58 +9,57 @@
       ></v-progress-linear>
     </template>
 
+<!--  style="width:290px; height:150px; border-radius:10px; position:relative; "-->
     <v-img
-      style="width:290px; height:150px; border-radius:10px; position:relative; margin-left:5px; top:5px;"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+      style="width: auto; height: auto; max-width: 100px; max-height: 100px; margin-left:5px; top:15px;"
+      src="https://cdn-icons.flaticon.com/png/512/3177/premium/3177440.png?token=exp=1634576301~hmac=4a9c23416f8447db59ab39b626119730"
     ></v-img>
 
     <v-card-title v-if="value._links">
         User # {{value._links.self.href.split("/")[value._links.self.href.split("/").length - 1]}}
-    </v-card-title >
+    </v-card-title>
     <v-card-title v-else>
         User
-    </v-card-title >
+    </v-card-title>
 
-    <v-card-text style = "margin-left:-15px; margin-top:10px;">
+    <v-card-text style="margin-left:-15px; margin-top:10px;">
 
           <div class="grey--text ml-4" v-if="editMode" style = "margin-top:-20px;">
             <v-text-field label="Name" v-model="value.name"/>
           </div>
-          <div class="grey--text ml-4" v-else>
+          <h5 v-else>
             Name :  {{value.name }}
-          </div>
+          </h5>
 
           <div class="grey--text ml-4" v-if="editMode" style = "margin-top:-20px;">
             <v-text-field label="Phone" v-model="value.phone"/>
           </div>
-          <div class="grey--text ml-4" v-else>
+          <h5 v-else>
             Phone :  {{value.phone }}
-          </div>
+          </h5>
 
           <div class="grey--text ml-4" v-if="editMode" style = "margin-top:-20px;">
             <v-text-field label="Email" v-model="value.email"/>
           </div>
-          <div class="grey--text ml-4" v-else>
+          <h5 v-else>
             Email :  {{value.email }}
-          </div>
+          </h5>
 
           <div class="grey--text ml-4" v-if="editMode" style = "margin-top:-20px;">
             <v-text-field type="number" label="Stamp" v-model="value.stamp"/>
           </div>
-          <div class="grey--text ml-4" v-else>
+          <h5 v-else>
             Stamp :  {{value.stamp }}
-          </div>
+          </h5>
+
           <div class="grey--text ml-4" v-if="editMode" style = "margin-top:-20px;">
             <v-text-field label="LoginStatus" v-model="value.loginStatus"/>
           </div>
-          <div class="grey--text ml-4" v-else>
+          <h5 v-else>
             LoginStatus :  {{value.loginStatus }}
-          </div>
-
-
+          </h5>
     </v-card-text>
 
-    <v-divider class="mx-4"></v-divider>
 
     <v-card-actions style = "position:absolute; right:0; bottom:0;">
       <v-btn

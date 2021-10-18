@@ -55,6 +55,7 @@ public class StatusTableViewHandler {
 
                 orderItems.add(orderItem);
             }
+            statusTable.setOrderItems(orderItems);
 
             // User 정보
             statusTable.setUserId(orderRequested.getUserId());

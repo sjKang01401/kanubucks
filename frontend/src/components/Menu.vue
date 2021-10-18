@@ -26,34 +26,32 @@
           <div class="grey--text ml-4" v-if="editMode" style = "margin-top:-20px;">
             <v-text-field label="Name" v-model="value.name"/>
           </div>
-          <div class="grey--text ml-4" v-else>
+          <h5 class="ml-4" v-else>
             Name :  {{value.name }}
-          </div>
+          </h5>
 
           <div class="grey--text ml-4" v-if="editMode" style = "margin-top:-20px;">
             <v-text-field label="Temp" v-model="value.temp"/>
           </div>
-          <div class="grey--text ml-4" v-else>
+          <h5 class="ml-4" v-else>
             Temp :  {{value.temp }}
-          </div>
+          </h5>
 
           <div class="grey--text ml-4" v-if="editMode" style = "margin-top:-20px;">
             <v-text-field label="Option" v-model="value.option"/>
           </div>
-          <div class="grey--text ml-4" v-else>
+          <h5 class="ml-4" v-else>
             Option :  {{value.option }}
-          </div>
+          </h5>
 
           <div class="grey--text ml-4" v-if="editMode" style = "margin-top:-20px;">
             <v-text-field type="number" label="Price" v-model="value.price"/>
           </div>
-          <div class="grey--text ml-4" v-else>
+          <h5 class="ml-4" v-else>
             Price :  {{value.price }}
-          </div>
+          </h5>
 
     </v-card-text>
-
-    <v-divider class="mx-4"></v-divider>
 
     <v-card-actions style = "position:absolute; right:0; bottom:0;">
       <v-btn
